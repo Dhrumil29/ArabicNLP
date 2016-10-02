@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
 import codecs
 s="مع"
 s= 'مع'
@@ -19,8 +20,38 @@ print(str)
 s.encode('utf-8')
 #q.encode('utf-8')
 #unicode(s, encoding='utf-8')
-file1name = codecs.open('final.txt', 'r', encoding="utf-8")
+file=open( "Ghassan.Aboud.Page_facebook_statuses.csv", "r")
+reader = csv.reader(file)
+# for line in reader:
+#     t=line[1],line[2]
+#     print(line[1])
+with open("Ghassan.Aboud.Page_facebook_statuses.csv", "r",encoding="utf-8") as file:
+     reader = csv.reader(file)
+     for idx,line in enumerate(reader):
+         if idx>0:
+             print(line)
+             t=line[1],line[2]
+             print (line[1])
+     for j in range(0, len(str)):
+         # print(str[j])
+         if (str[j] in pos_words):
+             pos_word[i] = pos_word[i] + 1
+         elif (str[j] in neg_words):
+             neg_word[i] = neg_word[i] + 1
+         elif (str[j] in stopwords):
+             stopword[i] = stopword[i] + 1
+         else:
+             normal_words[i] = normal_words[i] + 1
+     print(pos_word[i], neg_word[i], stopword[i], normal_words[i])
+file1name = codecs.open('Ghassan.Aboud.Page_facebook_statuses.csv', 'r', encoding="utf-8")
 output1file = file1name.readlines()
+for s in output1file:
+    print(s)
+    s.split(',')
+    print(s)
+    print(s[1])
+
+
 stopwords=[]
 for line in output1file:
     stopwords.append(line)
