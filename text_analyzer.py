@@ -20,19 +20,60 @@ print(str)
 s.encode('utf-8')
 #q.encode('utf-8')
 #unicode(s, encoding='utf-8')
+file1name = codecs.open('Ghassan.Aboud.Page_facebook_statuses.csv', 'rb',encoding="utf-8")
+output1file = file1name.readlines()
+string=[]
+for s in output1file:
+    print(s)
+    #print(len(s))
+    if(len(s)>1):
+        s.split()
+        print(s[1])
+
+    string.append(s)
+# print(string)
+# print(string[0])
+str=string[0].split(" ")
+print(str)
+s.encode('utf-8')
+#q.encode('utf-8')
+#unicode(s, encoding='utf-8')
 file=open( "Ghassan.Aboud.Page_facebook_statuses.csv", "r")
 reader = csv.reader(file)
+print(reader)
 # for line in reader:
 #     t=line[1],line[2]
 #     print(line[1])
-with open("Ghassan.Aboud.Page_facebook_statuses.csv", "r",encoding="utf-8") as file:
+csv_file_object = csv.reader(open('Ghassan.Aboud.Page_facebook_statuses.csv'))
+header=next(csv_file_object)
+print(csv_file_object)
+with open("Ghassan.Aboud.Page_facebook_statuses.csv") as file:
+
+
      reader = csv.reader(file)
-     for idx,line in enumerate(reader):
-         if idx>0:
-             print(line)
-             t=line[1],line[2]
-             print (line[1])
-     for j in range(0, len(str)):
+
+     for row in reader:
+         if not row==[]:
+
+             #print(row['status_message'].encode('utf-8'))
+             index=row[1].find("\\")
+
+             if not index==-1:
+                 string=row[1][index:]
+                 index=row[1].rfind("\\")
+                 string=string[1:index+3]
+                 print(string)
+             print(type(string))
+             if not string[0]=="\\":
+                 if not string._contains__("status"):
+                    index=string.find("\\")
+                    string=string[index:]
+             string = string.split()
+             print(string)
+             string=bytes(string,encoding="utf-8")
+             print(string)
+
+    for j in range(0, len(str)):
          # print(str[j])
          if (str[j] in pos_words):
              pos_word[i] = pos_word[i] + 1
