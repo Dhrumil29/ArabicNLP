@@ -136,7 +136,7 @@ def processFacebookPageFeedStatus(status, access_token):
     num_angrys = get_num_total_reactions('angry', reactions)
 
     # Return a tuple of all processed data
-
+    print(type(status_message))
     return (status_id, status_message, link_name, status_type, status_link,
             status_published, num_reactions, num_comments, num_shares,
             num_likes, num_loves, num_wows, num_hahas, num_sads, num_angrys)
@@ -162,6 +162,7 @@ def scrapeFacebookPageFeedStatus(page_id, access_token):
 
                 # Ensure it is a status with the expected metadata
                 if 'reactions' in status:
+
                     w.writerow(processFacebookPageFeedStatus(status,
                         access_token))
 
@@ -175,7 +176,7 @@ def scrapeFacebookPageFeedStatus(page_id, access_token):
             # if there is no next page, we're done.
             if 'paging' in statuses.keys():
                 statuses = json.loads(request_until_succeed(
-                                        statuses['paging']['next'].decode('utf-8')))
+                                        statuses['paging']['next']))
             else:
                 has_next_page = False
 
@@ -188,4 +189,4 @@ if __name__ == '__main__':
     scrapeFacebookPageFeedStatus(page_id, access_token)
 
 
-
+# The CSV can be opened in all major statistical programs. Have fun! :)
